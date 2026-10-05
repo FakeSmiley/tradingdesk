@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
 const { getPrices } = require('../services/twelveData');
 const { awardPoints, deductPoints } = require('../services/pointEngine');
 
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 const ALLOWED_PAIRS = [
   'EUR/USD', 'GBP/USD', 'USD/JPY', 'USD/CHF', 'AUD/USD',

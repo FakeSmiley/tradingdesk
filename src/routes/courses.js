@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
 const { spendNormalCredits, addGreenCredits } = require('../services/creditEngine');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // GET /api/courses — list published courses
 router.get('/', auth, async (req, res, next) => {

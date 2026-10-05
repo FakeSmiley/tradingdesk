@@ -5,22 +5,20 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
-        const prisma = require('./lib/prisma.js');
-    await prisma.$connect();
-    console.log('✅ Database connected');
-
-    // Run seed if needed
-    const { seedDatabase } = require('./services/seed');
-    await seedDatabase(prisma);
-    prisma.$disconnect();
+    try {
+      const prisma = require('./lib/prisma.js');
+      await prisma.$connect();
+      console.log('✅ Database connected');
+    } catch (dbErr) {
+      console.warn('⚠️ Database connection warning:', dbErr.message);
+    }
 
     app.listen(PORT, () => {
-      console.log(`🚀 FXDESK Backend running on port ${PORT}`);
-      console.log(`   Environment: ${process.env.NODE_ENV}`);
+      console.log(`🚀 FXDESK Backend running on http://localhost:${PORT}`);
+      console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
-    process.exit(1);
   }
 }
 

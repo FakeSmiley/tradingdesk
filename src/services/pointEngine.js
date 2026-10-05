@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // ─── POINT ENGINE ──────────────────────────────────────────────
 async function awardPoints(userId, amount, source, description = '') {

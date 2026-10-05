@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
 const { withdrawGreenCredits } = require('../services/creditEngine');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // GET /api/withdrawals/my
 router.get('/my', auth, async (req, res, next) => {

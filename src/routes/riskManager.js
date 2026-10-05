@@ -3,8 +3,7 @@ const router = express.Router();
 
 // Stub routes for remaining endpoints
 const { auth } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // Risk Manager - pure calculation (no DB needed)
 router.post('/calculate', auth, (req, res) => {

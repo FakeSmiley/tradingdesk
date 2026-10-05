@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../middleware/auth');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // Analysis route - returns structured analysis based on pair/timeframe
 // NOTE: All analysis is educational/theoretical, not financial advice

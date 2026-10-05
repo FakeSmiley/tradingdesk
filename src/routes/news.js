@@ -3,8 +3,7 @@ const router = express.Router();
 const { auth } = require('../middleware/auth');
 const { newsLimiter } = require('../middleware/rateLimiter');
 const { getNews, getNewsStatus } = require('../services/gnews');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 // GET /api/news
 router.get('/', auth, newsLimiter, async (req, res, next) => {

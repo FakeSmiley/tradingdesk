@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 const FEATURES = [
   'DASHBOARD', 'CHART', 'PAPER_TRADING', 'MY_STRATEGY', 'ORDER_FLOW_TRAINING',

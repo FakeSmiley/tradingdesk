@@ -94,7 +94,15 @@ app.use('/api/withdrawals', withdrawalsRouter);
 app.use('/api/features', featuresRouter);
 app.use('/api/admin', adminRouter);
 
-// ─── HEALTH CHECK ──────────────────────────────────────────────
+// ─── HEALTH & ROOT CHECK ───────────────────────────────────────
+app.get('/', (req, res) => {
+  res.json({ name: 'FXDESK API', status: 'online', timestamp: new Date().toISOString() });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });

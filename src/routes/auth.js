@@ -3,13 +3,12 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
-const { PrismaClient } = require('@prisma/client');
 const { authLimiter } = require('../middleware/rateLimiter');
 const { addNormalCredits } = require('../services/creditEngine');
 const { awardPoints } = require('../services/pointEngine');
 const { logAudit } = require('../services/auditLog');
 
-const prisma = new PrismaClient();
+const prisma = require('../lib/prisma.js');
 
 function generateTokens(userId) {
   const accessToken = jwt.sign({ userId }, process.env.JWT_SECRET, {
